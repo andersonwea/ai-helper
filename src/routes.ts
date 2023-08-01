@@ -1,14 +1,24 @@
 import express, { Response, Request } from 'express'
 import multer from 'multer'
-import wavefile from 'wavefile'
+import { WaveFile } from 'wavefile'
 import { pipeline } from '@xenova/transformers'
+import { createWriteStream } from 'node:fs'
+import { extname, resolve } from 'node:path'
+import { textGeneration } from './utils/text-generation'
+import { priceFormat } from './utils/price-format'
+import fs from 'fs'
+import { textToSpeak } from './utils/text-to-speech'
+import FormData from 'form-data'
+import { bufferToStream } from './utils/buffer-to-stream'
 
-const upload = multer({ dest: 'uploads/' })
+const storage = multer.memoryStorage()
 
-const router = express.Router()
+const upload = multer({ storage })
+
+export const router = express.Router()
 
 router.post(
-  'talk-to-gpt',
+  '/talk-to-gpt',
   upload.single('file'),
   async (request: Request, response: Response) => {
     try {
@@ -22,8 +32,7 @@ router.post(
         'automatic-speech-recognition',
         'Xenova/whisper-base',
       )
-
-      const wav = new wavefile.WaveFile(audioFile.buffer)
+      const wav = new WaveFile(audioFile.buffer)
 
       wav.toBitDepth('32f')
       wav.toSampleRate(16000)
@@ -34,6 +43,23 @@ router.post(
       }
 
       const transcription = await transcriber(audioData)
+
+      const { output, usage } = await textGeneration(transcription.text)
+
+      const cost = priceFormat(usage)
+
+      const fileOutputPath = 'data/output.wav'
+
+      if (output) {
+        const buffer = await textToSpeak(output)
+
+        fs.writeFileSync(fileOutputPath, buffer)
+
+        const fullUrl = request.protocol.concat('://').concat(request.hostname)
+        const fileUrl = new URL(`/data/output.wav`, fullUrl).toString()
+
+        return response.json({ audioUrl: fileUrl, cost })
+      }
     } catch (err) {
       console.error(err)
     }
