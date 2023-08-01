@@ -2,14 +2,10 @@ import express, { Response, Request } from 'express'
 import multer from 'multer'
 import { WaveFile } from 'wavefile'
 import { pipeline } from '@xenova/transformers'
-import { createWriteStream } from 'node:fs'
-import { extname, resolve } from 'node:path'
 import { textGeneration } from './utils/text-generation'
 import { priceFormat } from './utils/price-format'
 import fs from 'fs'
 import { textToSpeak } from './utils/text-to-speech'
-import FormData from 'form-data'
-import { bufferToStream } from './utils/buffer-to-stream'
 
 const storage = multer.memoryStorage()
 
