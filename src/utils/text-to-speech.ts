@@ -1,6 +1,6 @@
 import axios, { ResponseType } from 'axios'
 
-export async function textToSpeak(text: string) {
+export async function textToSpeech(text: string) {
   const voiceId = 'NUFn2pGaTh1p4u6Co1l4'
   const model = 'eleven_multilingual_v1'
 

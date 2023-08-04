@@ -3,9 +3,10 @@ import multer from 'multer'
 import { WaveFile } from 'wavefile'
 import { pipeline } from '@xenova/transformers'
 import { textGeneration } from './utils/text-generation'
-import { priceFormat } from './utils/price-format'
 import fs from 'fs'
-import { textToSpeak } from './utils/text-to-speech'
+import { textToSpeech } from './utils/text-to-speech'
+import { getBaseUrl } from './utils/get-base-url'
+import { buffer } from 'stream/consumers'
 
 const storage = multer.memoryStorage()
 
@@ -14,7 +15,33 @@ const upload = multer({ storage })
 export const router = express.Router()
 
 router.post(
-  '/talk-to-gpt',
+  '/api/text-to-speech',
+  async (request: Request, response: Response) => {
+    const { text } = request.body
+
+    if (!text) {
+      return response.status(400).json({ message: 'Invalid text.' })
+    }
+
+    try {
+      const fileOutputPath = 'data/output.wav'
+
+      const buffer = await textToSpeech(text)
+
+      fs.writeFileSync(fileOutputPath, buffer)
+
+      const fullUrl = getBaseUrl(request.protocol, request.hostname)
+      const fileUrl = new URL(`/data/output.wav`, fullUrl).toString()
+
+      return response.json({ audioUrl: fileUrl })
+    } catch (err) {
+      console.error(err)
+    }
+  },
+)
+
+router.post(
+  '/api/transcription',
   upload.single('file'),
   async (request: Request, response: Response) => {
     try {
@@ -28,6 +55,7 @@ router.post(
         'automatic-speech-recognition',
         'Xenova/whisper-base',
       )
+
       const wav = new WaveFile(audioFile.buffer)
 
       wav.toBitDepth('32f')
@@ -40,24 +68,30 @@ router.post(
 
       const transcription = await transcriber(audioData)
 
-      const { output, usage } = await textGeneration(transcription.text)
-
-      const cost = priceFormat(usage)
-
-      const fileOutputPath = 'data/output.wav'
-
-      if (output) {
-        const buffer = await textToSpeak(output)
-
-        fs.writeFileSync(fileOutputPath, buffer)
-
-        const fullUrl = request.protocol.concat('://').concat(request.hostname)
-        const fileUrl = new URL(`/data/output.wav`, fullUrl).toString()
-
-        return response.json({ audioUrl: fileUrl, cost })
-      }
+      return response.json({ transcription })
     } catch (err) {
       console.error(err)
+      return response.status(500).send()
+    }
+  },
+)
+
+router.post(
+  '/api/text-generation',
+  async (request: Request, response: Response) => {
+    const { text } = request.body
+
+    if (!text) {
+      return response.status(400).json({ message: 'Invalid Text.' })
+    }
+
+    try {
+      const { output, costInCents } = await textGeneration(text)
+
+      return response.json({ output, costInCents })
+    } catch (err) {
+      console.error(err)
+      return response.status(500).send
     }
   },
 )
