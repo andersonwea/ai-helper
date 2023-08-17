@@ -5,6 +5,11 @@ Essa API foi desenvolvida em Node.js e permite que você envie um arquivo de áu
 Além disso, você também pode enviar um texto para a API, e ela irá convertê-lo em um arquivo de áudio com a fala correspondente.
 Você também pode enviar texto para API e ela te retornará um texto de acordo com a requisição.
 
+## Tecnologias
+ - [OpenAi](https://openai.com)
+ - [ElevenLabs](https://elevenlabs.io)
+ - [HuggingFace](https://huggingface.co)
+
 ## Pré-requisitos
 
  - [Node.js](https://nodejs.org/en) instalado na sua máquina.
