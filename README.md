@@ -69,7 +69,8 @@ PORT: Define a porta em que a API será executada. Por padrão: PORT=3333.
 NODE_ENV: Define o ambiente de execução. Desenvolvimento: NODE_ENV='DEV'. Produção: NODE_ENV='PROD'
 OPENAI_API_KEY: Define a chave para acesso ao openai. 
 HF_API_KEY: Define a chave de acesso para o Hugging Face.
-ELEVENLABS_API_KEY: Define a chave de acesso para o ElevenLabs. 
+ELEVENLABS_API_KEY: Define a chave de acesso para o ElevenLabs.
+ELEVENLABS_VOICE_ID: Define o ID da voz a ser utilizada.
 ```
 * Saiba como criar uma API key [Openai.](https://platform.openai.com/docs/api-reference) ($5 FREE para testar)
 * Saiba como criar uma API key [HuggingFace.](https://huggingface.co/settings/tokens) (FREE)
