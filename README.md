@@ -44,7 +44,7 @@ A API estará disponível em http://localhost:3333.
 Exemplo de solicitação para transcrição de áudio usando o cURL:
 
 ```bash
-curl -X POST -F "audio=@caminho/para/o/arquivo.wav" http://localhost:3333/api/transcription > trancription.txt
+curl -X POST -F "file=@caminho/para/o/arquivo.wav" http://localhost:3333/api/transcription > trancription.txt
 ```
 
 Exemplo de solicitação para geração de áudio a partir de um texto usando o cURL:
