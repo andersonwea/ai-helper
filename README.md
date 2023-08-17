@@ -1,6 +1,6 @@
-# API de Transcrição de Áudio, Geração de Texto e Text-to-Speech
+# Ai-Helper
 
-Este é um projeto de API para transcrição de áudio, geração de texto e conversão de texto em fala (Text-to-Speech). 
+Este é um projeto que reuni 3 serviços de AI, transcrição de áudio, geração de texto e conversão de texto em fala (Text-to-Speech). 
 Essa API foi desenvolvida em Node.js e permite que você envie um arquivo de áudio em formato .wav, e ela retornará a transcrição do áudio em texto.
 Além disso, você também pode enviar um texto para a API, e ela irá convertê-lo em um arquivo de áudio com a fala correspondente.
 Você também pode enviar texto para API e ela te retornará um texto de acordo com a requisição.
@@ -13,8 +13,8 @@ Você também pode enviar texto para API e ela te retornará um texto de acordo 
 
 Clone este repositório em sua máquina:
 ```bash
-git clone https://github.com/andersonwea/audio-text-convertion.git
-cd audio-text-convertion
+git clone https://github.com/andersonwea/ai-helper.git
+cd ai-helper
 ```
 
 ## Instale as dependências:
