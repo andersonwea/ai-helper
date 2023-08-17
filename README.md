@@ -1,6 +1,6 @@
-# API de Transcrição de Áudio, Geração de Texto e Text-to-Speech
+# Ai-Helper
 
-Este é um projeto de API para transcrição de áudio, geração de texto e conversão de texto em fala (Text-to-Speech). 
+Este é um projeto que reuni 3 serviços de AI, transcrição de áudio, geração de texto e conversão de texto em fala (Text-to-Speech). 
 Essa API foi desenvolvida em Node.js e permite que você envie um arquivo de áudio em formato .wav, e ela retornará a transcrição do áudio em texto.
 Além disso, você também pode enviar um texto para a API, e ela irá convertê-lo em um arquivo de áudio com a fala correspondente.
 Você também pode enviar texto para API e ela te retornará um texto de acordo com a requisição.
@@ -13,8 +13,8 @@ Você também pode enviar texto para API e ela te retornará um texto de acordo 
 
 Clone este repositório em sua máquina:
 ```bash
-git clone https://github.com/andersonwea/audio-text-convertion.git
-cd audio-text-convertion
+git clone https://github.com/andersonwea/ai-helper.git
+cd ai-helper
 ```
 
 ## Instale as dependências:
@@ -71,9 +71,9 @@ OPENAI_API_KEY: Define a chave para acesso ao openai.
 HF_API_KEY: Define a chave de acesso para o Hugging Face.
 ELEVENLABS_API_KEY: Define a chave de acesso para o ElevenLabs. 
 ```
-* Saiba como criar uma API key [Openai.](https://platform.openai.com/docs/api-reference)
-* Saiba como criar uma API key [HuggingFace.](https://huggingface.co/settings/tokens)
-* Saiba como criar uma API key [ElevenLabs.](https://docs.elevenlabs.io/api-reference/quick-start/introduction)
+* Saiba como criar uma API key [Openai.](https://platform.openai.com/docs/api-reference) ($5 FREE para testar)
+* Saiba como criar uma API key [HuggingFace.](https://huggingface.co/settings/tokens) (FREE)
+* Saiba como criar uma API key [ElevenLabs.](https://docs.elevenlabs.io/api-reference/quick-start/introduction) (30k caracteres para testar)
 
 5. Salve o arquivo .env após preencher as variáveis com os valores corretos.
 
