@@ -1,7 +1,7 @@
 import axios, { ResponseType } from 'axios'
 
 export async function textToSpeech(text: string) {
-  const voiceId = 'NUFn2pGaTh1p4u6Co1l4'
+  const voiceId = process.env.ELEVENLABS_VOICE_ID
   const model = 'eleven_multilingual_v1'
 
   const options = {
