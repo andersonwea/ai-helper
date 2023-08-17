@@ -71,9 +71,9 @@ OPENAI_API_KEY: Define a chave para acesso ao openai.
 HF_API_KEY: Define a chave de acesso para o Hugging Face.
 ELEVENLABS_API_KEY: Define a chave de acesso para o ElevenLabs. 
 ```
-* Saiba como criar uma API key [Openai.](https://platform.openai.com/docs/api-reference)
-* Saiba como criar uma API key [HuggingFace.](https://huggingface.co/settings/tokens)
-* Saiba como criar uma API key [ElevenLabs.](https://docs.elevenlabs.io/api-reference/quick-start/introduction)
+* Saiba como criar uma API key [Openai.](https://platform.openai.com/docs/api-reference) ($5 FREE para testar)
+* Saiba como criar uma API key [HuggingFace.](https://huggingface.co/settings/tokens) (FREE)
+* Saiba como criar uma API key [ElevenLabs.](https://docs.elevenlabs.io/api-reference/quick-start/introduction) (30k caracteres para testar)
 
 5. Salve o arquivo .env após preencher as variáveis com os valores corretos.
 
